@@ -1,0 +1,247 @@
+/* --- CSS Khusus Login Full-Screen --- */
+
+/* Atur body agar login-container dan product-container berdampingan */
+body {
+    font-family: 'Poppins', sans-serif;
+    /* Background gradient Anda */
+    background: linear-gradient(135deg, #4f46e5, #06b6d4); 
+    height: 100vh; /* Tinggi penuh viewport */
+    margin: 0;
+    display: flex; /* Mengaktifkan Flexbox */
+    justify-content: center; 
+    align-items: center; /* Membuat semua konten rata tengah vertikal */
+    gap: 30px; 
+}
+
+/* Style untuk kotak login putih */
+.login-container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 400px; 
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+/* Penyesuaian Style Login */
+.login-container h2 {
+    margin-bottom: 1.5rem;
+    color: #333;
+    font-weight: 600;
+}
+
+.input-group {
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+label {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.login-container button {
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    width: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-container button:hover {
+    background-color: #4338ca;
+}
+
+#message {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+/* --- Style Daftar Produk (REVISI UTAMA DI SINI) --- */
+.product-list-container {
+    width: 90%;
+    max-width: 500px;
+    padding: 20px;
+    /* PERBAIKAN 1: Paksa kontainer produk rata atas, bukan di tengah vertikal */
+    align-self: flex-start; 
+    margin-top: 5vh; 
+}
+
+.product-list-container h1 {
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.product-card-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.product-card {
+    display: flex;
+    background: rgba(255, 255, 255, 0.95); 
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    /* PERBAIKAN 2: Konten di dalam kartu (gambar dan teks) rata atas */
+    align-items: flex-start; 
+    transition: transform 0.2s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.product-img {
+    /* PERBAIKAN 3: Atur agar gambar tidak terdistorsi dan ukurannya tetap */
+    width: 80px; 
+    height: 80px;
+    border-radius: 8px;
+    margin-right: 15px;
+    object-fit: cover; /* Penting agar gambar tidak meregang */
+    border: 2px solid #ddd;
+    /* Pastikan gambar rata atas di dalam kartu */
+    align-self: flex-start;
+}
+
+.product-info {
+    /* Pastikan info produk menggunakan seluruh ruang yang tersedia */
+    flex-grow: 1; 
+}
+
+.product-info h5 {
+    margin-bottom: 5px;
+    font-size: 1rem;
+    color: #333;
+    font-weight: 600;
+}
+
+.product-info .price {
+    color: #4f46e5; 
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+.product-info .stock {
+    color: #06b6d4; 
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+/* Penyesuaian Responsif untuk Tampilan HP */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column; 
+        height: auto; 
+        padding: 20px;
+        align-items: stretch;
+    }
+    
+    .product-list-container {
+        max-width: none;
+        order: 1; 
+        margin-bottom: 20px;
+        align-self: auto;
+        margin-top: 0;
+    }
+
+    .login-container {
+        order: 2; 
+        margin-bottom: 20px;
+    }
+
+    .product-card-wrapper {
+        flex-direction: row; 
+        overflow-x: auto; 
+        padding-bottom: 10px;
+    }
+
+    .product-card {
+        min-width: 150px; 
+        flex-direction: column;
+        text-align: center;
+        align-items: center; 
+    }
+    .product-img {
+        margin-right: 0;
+        margin-bottom: 10px;
+        align-self: center; /* Rata tengah gambar di tampilan HP */
+    }
+}
+
+
+/* --- Style Laporan Penjualan (Dashboard) --- */
+
+/* Style khusus yang aktif saat dashboard muncul */
+.dashboard-page {
+    background: #f8f9fa !important; 
+    height: auto !important; 
+    display: block !important; 
+    padding: 20px 0; 
+}
+
+.table th,
+.table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.btn {
+    border-radius: 8px;
+}
+
+.btn-danger,
+.btn-warning {
+    padding: 4px 10px;
+    font-size: 14px;
+} 
+
+/* Penambahan: Hover pada baris tabel */
+.table-striped tbody tr:hover {
+    background-color: #e9ecef; 
+}
+
+/* Penambahan: Style untuk total pendapatan */
+.dashboard-container .fw-bold.fs-5 {
+    padding: 10px 15px;
+    border-radius: 8px;
+    background-color: #fff; 
+    border: 1px solid #dee2e6;
+    display: inline-block;
+}
+
+/* Penambahan: Tombol "Hapus Semua" menjadi lebih mencolok */
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+
+/* Style untuk modal */
+.modal-header {
+    border-top-left-radius: 15px; 
+    border-top-right-radius: 15px;
+}
+
+.modal-content {
+    border-radius: 15px;
+}

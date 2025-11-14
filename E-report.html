@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-Report Penjualan Toko Sembako</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="E-report.style.css" />
+</head>
+
+<body class="bg-light">
+
+    <div class="product-list-container" id="productListContainer">
+        <h1 class="text-white text-center mb-4">🛒 Barang Tersedia Toko Sembako</h1>
+        <div class="product-card-wrapper">
+            <div class="product-card">
+                <img src="Sania Beras Premium Pulen.jpeg" alt="Beras 5kg" class="product-img">
+                <div class="product-info">
+                    <h5>Beras Sania Premium 5kg</h5>
+                    <p class="price">Rp 65.000</p>
+                    <p class="stock">Stok: 50</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="OatSide 1L.jpeg" alt="Beras 5kg" class="product-img">
+                <div class="product-info">
+                    <h5>OATSIDE Original 1L</h5>
+                    <p class="price">Rp 65.000</p>
+                    <p class="stock">Stok: 50</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="MINYAK GORENG PREMIUM SUNCO 2L.jpeg" alt="Minyak Goreng 2L" class="product-img">
+                <div class="product-info">
+                    <h5>Minyak Goreng Premium Sunco 2L</h5>
+                    <p class="price">Rp 30.000</p>
+                    <p class="stock">Stok: 35</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="Telor.jpeg" alt="Telur Ayam" class="product-img">
+                <div class="product-info">
+                    <h5>Telur Ayam/Kg</h5>
+                    <p class="price">Rp 28.000</p>
+                    <p class="stock">Stok: 80</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="login-container" id="loginContainer">
+        <h2>Login E-Report</h2>
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" required />
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" required />
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <p id="message"></p>
+    </div>
+
+    <div class="container mt-5 dashboard-container d-none" id="dashboardContainer">
+        <h2 class="text-center mb-4">
+            <b>Laporan Penjualan Toko Sembako</b>
+        </h2>
+        <div class="text-end mb-3">
+            <button class="btn btn-danger me-2" onclick="logout()">🚪 Logout</button> <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDataModal">
+                + Tambah Data
+            </button>
+            <button class="btn btn-secondary" onclick="hapusSemuaData()">🗑 Hapus Semua</button>
+        </div>
+
+        <table class="table table-bordered table-striped" id="dataTable">
+            <thead class="table-dark">
+                <tr>
+                    <th>No</th>
+                    <th>Nama Produk</th>
+                    <th>Kategori</th>
+                    <th>Jumlah</th>
+                    <th>Harga</th>
+                    <th>Total</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+            </tbody>
+        </table>
+
+        <div class="text-end fw-bold fs-5 mt-3">
+            Total Pendapatan: <span id="totalPendapatan">Rp 0</span>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="addDataModal" tabindex="-1" aria-labelledby="addDataModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="addDataModalLabel">Tambah Data Penjualan</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="addDataForm">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="namaProduk" class="form-label">Nama Produk</label>
+                            <input type="text" class="form-control" id="namaProduk" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="kategori" class="form-label">Kategori</label>
+                            <select class="form-select" id="kategori" required>
+                                <option value="">Pilih Kategori</option>
+                                <option value="Sembako">Sembako</option>
+                                <option value="Minuman">Minuman</option>
+                                <option value="Makanan Ringan">Makanan Ringan</option>
+                                <option value="Lainnya">Lainnya</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="jumlah" class="form-label">Jumlah (Unit)</label>
+                            <input type="number" class="form-control" id="jumlah" required min="1" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="harga" class="form-label">Harga Satuan (Rp)</label>
+                            <input type="number" class="form-control" id="harga" required min="100" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Simpan Data</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editDataModal" tabindex="-1" aria-labelledby="editDataModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-warning text-dark">
+                    <h5 class="modal-title" id="editDataModalLabel">Edit Data Penjualan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="editDataForm">
+                    <input type="hidden" id="editIndex" />
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="editNamaProduk" class="form-label">Nama Produk</label>
+                            <input type="text" class="form-control" id="editNamaProduk" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="editKategori" class="form-label">Kategori</label>
+                            <select class="form-select" id="editKategori" required>
+                                <option value="Sembako">Sembako</option>
+                                <option value="Minuman">Minuman</option>
+                                <option value="Makanan Ringan">Makanan Ringan</option>
+                                <option value="Lainnya">Lainnya</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editJumlah" class="form-label">Jumlah (Unit)</label>
+                            <input type="number" class="form-control" id="editJumlah" required min="1" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="editHarga" class="form-label">Harga Satuan (Rp)</label>
+                            <input type="number" class="form-control" id="editHarga" required min="100" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-warning">Simpan Perubahan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="E-report.js"></script>
+</body>
+</html>
